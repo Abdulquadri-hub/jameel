@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Livewire\Livewire;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Custom update route
+        Livewire::setUpdateRoute(function ($handle) {
+            return Route::post('/jameel/public/livewire/update', $handle);
+        });
+
+        // Custom JavaScript route
+        Livewire::setScriptRoute(function ($handle) {
+            return Route::get('/jameel/public/livewire/livewire.js', $handle);
+        });
     }
 }
