@@ -14,7 +14,7 @@ class AllCategories extends Component
     {
         $data['title']  = "Categories";
 
-        $data['categories'] = Categories::latest()->paginate(5);
+        $data['categories'] = Categories::with("user")->latest()->paginate(5);
 
         return view('livewire.admin.categories.all-categories',$data);
     }

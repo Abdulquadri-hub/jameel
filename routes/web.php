@@ -46,12 +46,12 @@ Route::group([], function(){
         //categories
         Route::get('/categories', AllCategories::class)->name("categories.index");
         Route::get('/categories/add', AddCategory::class)->name("categories.add");
-        Route::get('/categories/edit', EditCategory::class)->name("categories.edit");
+        Route::get('/categories/edit/{cid}', EditCategory::class)->name("categories.edit");
 
         // products
         Route::get('/products', AllProducts::class)->name("product.index");
         Route::get('/products/add', AddProduct::class)->name("product.add");
-        Route::get('/products/edit', Editproduct::class)->name("product.edit");
+        Route::get('/products/edit/{pid}', Editproduct::class)->name("product.edit");
     
     });
 

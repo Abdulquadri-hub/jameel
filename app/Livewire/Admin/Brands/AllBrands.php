@@ -12,17 +12,34 @@ class AllBrands extends Component
 
     public $bid;
 
-    public function trash()
-    {
-       dump($this->bid);
-    }
-    
     public function render()
     {
         $data['title']  = "Brand";
-
-        $data['brands'] = Brand::latest()->paginate(5);
-
+        
+        $data['brands'] = Brand::with(['user'])->latest()->paginate(5);
+        
         return view('livewire.admin.brands.all-brands',$data);
     }
+
+
+    public function trash($id)
+    {
+        $this->bid = $id;
+    
+       if(!empty($this->bid))
+       {
+           $trashedBrand = Brand::find($this->bid);
+           $trashedBrand->delete();
+           if($trashedBrand)
+           {
+                session()->flash('success', 'Brand successfully trashed.');
+           }else {
+                session()->flash('error', 'Brand not found!.');
+           }
+    
+       }else {
+            session()->flash('error', 'Brand dont exists.');
+       }
+    }
 }
+

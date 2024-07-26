@@ -16,4 +16,14 @@ class Categories extends Model
         'category_slug',
         'category_status' 
     ];
+
+    public function getCreatedByAttribute()
+    {
+        return $this->user->firstname . ' ' . $this->user->lastname;
+    }
+
+    public function user()
+    {
+        return $this->BelongsTo(User::class);
+    }
 }

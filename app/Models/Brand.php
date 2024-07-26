@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOneOrMany;
 
 class Brand extends Model
 {
@@ -17,8 +19,13 @@ class Brand extends Model
         'brand_status' 
     ];
 
-    // public function user()
-    // {
-    //     return 
-    // }
+    public function getCreatedByAttribute()
+    {
+        return $this->user->firstname . ' ' . $this->user->lastname;
+    }
+
+    public function user()
+    {
+        return $this->BelongsTo(User::class);
+    }
 }

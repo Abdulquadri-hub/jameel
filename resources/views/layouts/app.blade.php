@@ -18,6 +18,9 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ env('ASSETS_URL') }}/assets/css/style.css">
     <link rel="stylesheet" href="{{ env('ASSETS_URL') }}/assets/css/components.css">
+
+    {{-- sweet alert --}}
+    {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
     
 </head>
 <body>
@@ -69,6 +72,26 @@
     <!-- Template JS File -->
     <script src="{{ env('ASSETS_URL') }}/assets/js/scripts.js"></script>
     <script src="{{ env('ASSETS_URL') }}/assets/js/custom.js"></script>
+
+    {{-- <script>
+        window.addEventListener("show-delete-confirmation", event => {
+            swal({
+    
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                Livewire.emit("deleteConfirmed");
+              } else {
+                swal("Your imaginary file is safe!");
+              }
+            });
+        });
+    </script> --}}
     
 </body>
 </html>

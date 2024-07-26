@@ -19,7 +19,6 @@
             <h2 class="section-title">{{ $title }}</h2>
             <p class="section-lead">
               You can manage all brands, such as editing, deleting and more.
-              @include('layouts.messages')
             </p>
 
             <div class="row">
@@ -50,6 +49,9 @@
                 <div class="card">
                   <div class="card-header">
                     <h4>All {{ $title }}</h4>
+                  </div>
+                  <div class="m-2">
+                    @include('layouts.messages')
                   </div>
                   <div class="card-body">
 
@@ -109,14 +111,14 @@
                                   <div class="bullet"></div>
                                   <a href="{{ route('brand.edit', [$brand->bid]) }}" wire:navigate >Edit</a>
                                   <div class="bullet"></div>
-                                  <a  wire:click="trash({{ $brand->bid }})" class="text-danger">Trash</a>
+                                  <a href="#" wire:click.prevent='trash({{ $brand->id }})' class="text-danger">Trash</a>
                                 </div>
                               </td>
 
                               <td>
                                 <a href="#">
                                   <img alt="image" src="{{ env('ASSETS_URL') }}/assets/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="title">   
-                                  <div class="d-inline-block ml-1">{{ ucfirst($brand->user_id) }}</div>
+                                  <div class="d-inline-block ml-1">{{ ucfirst($brand->created_by) }}</div>
                                 </a>
                               </td>
                               <td>{{ ucfirst($brand->created_at) }}</td>
