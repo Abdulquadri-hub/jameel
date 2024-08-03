@@ -3,9 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -52,6 +53,14 @@ class User extends Authenticatable
         ];
     }
 
+    // public function getFulnameAttribute()
+    // {
+    //     if(Auth::user())
+    //     {
+    //         return Auth::user()->firstname . " " . Auth::user()->lastname;
+    //     }
+    // }
+
     public function brand()
     {
         return $this->HasMany(Brand::class);
@@ -60,5 +69,10 @@ class User extends Authenticatable
     public function category()
     {
         return $this->HasMany(Categories::class);
+    }
+
+    public function product()
+    {
+        return $this->HasMany(Product::class);
     }
 }

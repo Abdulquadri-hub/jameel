@@ -14,7 +14,7 @@ class AllProducts extends Component
     {
         $data['title']  = "Products";
 
-        $data['products'] = Product::latest()->paginate(5);
+        $data['products'] = Product::with(["user"])->latest()->paginate(5);
 
         return view('livewire.admin.products.all-products',$data);
     }

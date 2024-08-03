@@ -112,7 +112,7 @@
                                   <div class="bullet"></div>
                                   <a href="{{ route('categories.edit', [$category->cid]) }}" wire:navigate >Edit</a>
                                   <div class="bullet"></div>
-                                  <a href="#" class="text-danger">Trash</a>
+                                  <a href="#"   wire:click.prevent='trash({{ $category->id }})' class="text-danger">Trash</a>
                                 </div>
                               </td>
 

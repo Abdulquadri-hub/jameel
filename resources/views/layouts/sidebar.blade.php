@@ -32,20 +32,26 @@
               <a href="#" wire:navigate class="nav-link"><i class="far fa-user"></i> <span>Roles And Permissions</span></a>
             </li>
 
+            <li class="menu-header">User</li>
+
+              <li class="dropdown">
+                <a  href="{{ route('admin.profile') }}" wire:navigate  class="nav-link"><i class="far fa-user"></i> <span>Profile</span></a>
+              </li>
+
             <li class="menu-header">Auth</li>
 
-            <li class="dropdown">
-              <a href="{{ route('register') }}" wire:navigate  class="nav-link"><i class="far fa-user"></i> <span>Register</span></a>
-            </li>
+            @if (checkLogin())
+              @livewire("auth.logout")
+            @else
+              <li class="dropdown">
+                <a href="{{ route('register') }}" wire:navigate  class="nav-link"><i class="far fa-user"></i> <span>Register</span></a>
+              </li>
 
-            <li class="dropdown">
-              <a href="{{ route('login') }}" wire:navigate  class="nav-link"><i class="far fa-user"></i> <span>Login</span></a>
-            </li>
-
-            <li class="dropdown">
-              <a href="{{ route('logout') }}" wire:navigate  class="nav-link"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
-            </li>
-
+              <li class="dropdown">
+                <a href="{{ route('login') }}" wire:navigate  class="nav-link"><i class="far fa-user"></i> <span>Login</span></a>
+              </li>
+            @endif
+            
           </ul>       
           </aside>
         </div>

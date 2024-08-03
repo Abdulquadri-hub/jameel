@@ -107,24 +107,24 @@
                                 <div class="table-links">
                                   <a href="#">View</a>
                                   <div class="bullet"></div>
-                                  <a href="#">Edit</a>
+                                  <a href="{{ route('product.edit', [$product->pid]) }}" wire:navigate >Edit</a>
                                   <div class="bullet"></div>
-                                  <a href="#" class="text-danger">Trash</a>
+                                  <a href="#" wire:click.prevent='trash({{ $product->id }})' class="text-danger">Trash</a>
                                 </div>
                               </td>
 
                               <td>
                                 <a href="#">
                                   <img alt="image" src="{{ env('ASSETS_URL') }}/assets/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="title">   
-                                  <div class="d-inline-block ml-1">{{ ucfirst($product->user_id) }}</div>
+                                  <div class="d-inline-block ml-1">{{ ucfirst($product->created_by) }}</div>
                                 </a>
                               </td>
                               <td>{{ ucfirst($product->created_at) }}</td>
-                              @if($product->status == "active")
+                              @if($product->product_status == "active")
                                   
                                 <td><div class="badge badge-primary">Active</div></td>
 
-                              @elseif($product->status == "inactive")
+                              @elseif($product->product_status == "inactive")
 
                                 <td><div class="badge badge-danger">In-Active</div></td>
 

@@ -11,7 +11,7 @@
 
     <!-- CSS Libraries -->
     {{-- <link rel="stylesheet" href="{{ env('ASSETS_URL') }}/assets/modules/jqvmap/dist/jqvmap.min.css"> --}}
-    {{-- <link rel="stylesheet" href="{{ env('ASSETS_URL') }}/assets/modules/summernote/summernote-bs4.css"> --}}
+    <link rel="stylesheet" href="{{ env('ASSETS_URL') }}/assets/modules/summernote/summernote-bs4.css">
     {{-- <link rel="stylesheet" href="{{ env('ASSETS_URL') }}/assets/modules/owlcarousel2/dist/assets/owl.carousel.min.css"> --}}
     {{-- <link rel="stylesheet" href="{{ env('ASSETS_URL') }}/assets/modules/owlcarousel2/dist/assets/owl.theme.default.min.css">  --}}
 
@@ -62,9 +62,9 @@
     <!-- JS Libraies -->
     <script src="{{ env('ASSETS_URL') }}/assets/modules/jquery.sparkline.min.js"></script>
     <script src="{{ env('ASSETS_URL') }}/assets/modules/chart.min.js"></script>
-    <script src="{{ env('ASSETS_URL') }}/assets/modules/owlcarousel2/dist/owl.carousel.min.js"></script>
+    {{-- <script src="{{ env('ASSETS_URL') }}/assets/modules/owlcarousel2/dist/owl.carousel.min.js"></script> --}}
     <script src="{{ env('ASSETS_URL') }}/assets/modules/summernote/summernote-bs4.js"></script>
-    <script src="{{ env('ASSETS_URL') }}/assets/modules/chocolat/dist/js/jquery.chocolat.min.js"></script>
+    {{-- <script src="{{ env('ASSETS_URL') }}/assets/modules/chocolat/dist/js/jquery.chocolat.min.js"></script> --}}
     
     <!-- Page Specific JS File -->
     <script src="{{ env('ASSETS_URL') }}/assets/js/page/index.js"></script>

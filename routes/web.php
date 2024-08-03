@@ -6,14 +6,15 @@ use App\Livewire\Auth\Logout;
 use App\Livewire\Auth\Register;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Admin\Brands\AddBrand;
+use App\Livewire\Admin\Profile\Profile;
 use App\Livewire\Admin\Brands\AllBrands;
 use App\Livewire\Admin\Brands\EditBrand;
-use App\Livewire\Admin\Categories\AddCategory;
-use App\Livewire\Admin\Categories\AllCategories;
-use App\Livewire\Admin\Categories\EditCategory;
 use App\Livewire\Admin\Products\AddProduct;
 use App\Livewire\Admin\Products\AllProducts;
 use App\Livewire\Admin\Products\Editproduct;
+use App\Livewire\Admin\Categories\AddCategory;
+use App\Livewire\Admin\Categories\EditCategory;
+use App\Livewire\Admin\Categories\AllCategories;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,6 +38,9 @@ Route::group([], function(){
     ], function(){
     
         Route::get('/', Home::class)->name('admin.dashboard');
+
+        //profile
+        Route::get('/profile', Profile::class)->name("admin.profile");
 
         // brands
         Route::get('/brands', AllBrands::class)->name('brand.index');

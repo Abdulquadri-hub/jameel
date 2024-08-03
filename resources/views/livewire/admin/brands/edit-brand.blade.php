@@ -32,7 +32,7 @@
                       <div class="form-group row mb-4">
                       <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Brand</label>
                       <div class="col-sm-12 col-md-7">
-                        <input type="text" wire:model.debounce.5ms='brand' class="form-control">
+                        <input type="text" wire:model='brand' class="form-control">
                         @error('brand') <span class ="text-danger"> {{ $message }} </span>  @enderror
                       </div>
                       </div>
@@ -40,7 +40,7 @@
                       {{-- <div class="form-group row mb-4">
                       <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Slug</label>
                       <div class="col-sm-12 col-md-7">
-                        <input type="text" wire:model.debounce.5ms='brand_slug' class="form-control" readonly name='brand_slug'>
+                        <input type="text" wire:model='brand_slug' class="form-control" readonly name='brand_slug'>
                         @error('brand_slug') <span class ="text-danger"> {{ $message }} </span>  @enderror
                       </div>
                       </div> --}}
@@ -48,7 +48,7 @@
                       <div class="form-group row mb-4">
                       <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Status</label>
                       <div class="col-sm-12 col-md-7">
-                        <select class="form-control selectric" wire:model.debounce.5ms='brand_status' name='brand_status'>
+                        <select class="form-control selectric" wire:model='brand_status' name='brand_status'>
                           <option></option>
                           <option value='active'>active</option>
                           <option value='inactive'>inactive</option>
