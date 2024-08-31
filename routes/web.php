@@ -15,14 +15,15 @@ use App\Livewire\Admin\Products\Editproduct;
 use App\Livewire\Admin\Categories\AddCategory;
 use App\Livewire\Admin\Categories\EditCategory;
 use App\Livewire\Admin\Categories\AllCategories;
+use App\Livewire\Admin\Warehouses\AddWarehouse;
+use App\Livewire\Admin\Warehouses\AllWarehouses;
+use App\Livewire\Admin\Warehouses\EditWarehouse;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group([
-    'prefix' =>  'auth'
-], function(){
+Route::group(['prefix' =>  'auth'], function(){
 
     Route::get('/register', Register::class)->name('register');
     Route::get('/login', Login::class)->name('login');
@@ -30,36 +31,45 @@ Route::group([
 
 });
 
-Route::group([], function(){
 
-    // admin route
-    Route::group([
-        'prefix' =>  'dashboard'
-    ], function(){
+// admin route
+Route::group(['prefix' =>  'dashboard'], function(){
     
-        Route::get('/', Home::class)->name('admin.dashboard');
+    Route::get('/', Home::class)->name('admin.dashboard');
 
-        //profile
-        Route::get('/profile', Profile::class)->name("admin.profile");
+    Route::group(['prefix' =>  'profile'], function(){
 
-        // brands
-        Route::get('/brands', AllBrands::class)->name('brand.index');
-        Route::get('/brands/add', AddBrand::class)->name('brand.add');
-        Route::get('/brands/edit/{bid}', EditBrand::class)->name('brand.edit');
-
-        //categories
-        Route::get('/categories', AllCategories::class)->name("categories.index");
-        Route::get('/categories/add', AddCategory::class)->name("categories.add");
-        Route::get('/categories/edit/{cid}', EditCategory::class)->name("categories.edit");
-
-        // products
-        Route::get('/products', AllProducts::class)->name("product.index");
-        Route::get('/products/add', AddProduct::class)->name("product.add");
-        Route::get('/products/edit/{pid}', Editproduct::class)->name("product.edit");
-    
+        Route::get('/', Profile::class)->name("admin.profile");
     });
 
-});
+    Route::group(['prefix' =>  'brands'], function(){
 
+        Route::get('/', AllBrands::class)->name('brand.index');
+        Route::get('/add', AddBrand::class)->name('brand.add');
+        Route::get('/edit/{bid}', EditBrand::class)->name('brand.edit');
+    });
+
+    Route::group(['prefix' =>  'categories'], function(){
+
+        Route::get('/', AllCategories::class)->name("categories.index");
+        Route::get('/add', AddCategory::class)->name("categories.add");
+        Route::get('/edit/{cid}', EditCategory::class)->name("categories.edit");
+    });
+
+    Route::group(['prefix' =>  'products'], function(){
+
+        Route::get('/', AllProducts::class)->name("product.index");
+        Route::get('/add', AddProduct::class)->name("product.add");
+        Route::get('/edit/{pid}', Editproduct::class)->name("product.edit");
+    });
+
+    Route::group(['prefix' =>  'warehouses'], function(){
+
+        Route::get('/', AllWarehouses::class)->name("warehouse.index");
+        Route::get('/add', AddWarehouse::class)->name("warehouse.add");
+        Route::get('/edit/{wid}', EditWarehouse::class)->name("warehouse.edit");
+    });
+    
+});
 
 

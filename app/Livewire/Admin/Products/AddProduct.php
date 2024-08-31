@@ -5,6 +5,8 @@ namespace App\Livewire\Admin\Products;
 use App\Models\Brand;
 use App\Models\Product;
 use Livewire\Component;
+use App\Models\Inventory;
+use App\Models\Warehouse;
 use App\Models\Categories;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
@@ -28,8 +30,10 @@ class AddProduct extends Component
     public $image3;
     public $returnable;
     public $category_id;
+    public $warehouse_id;
     public $brand_id;
     public $categories;
+    public $warehouses;
     public $brands;
     public $image1Preview;
     public $image2Preview;
@@ -41,10 +45,10 @@ class AddProduct extends Component
     {
         $data['title']  = "Product";
 
-        //get categories
         $data['categories'] = $this->categories = Categories::all();
 
-        //get brands 
+        $data['warehouses'] = $this->warehouses = Warehouse::all();
+
         $data['brands'] = $this->brands =  Brand::all();
 
         return view('livewire.admin.products.add-product',$data);
@@ -73,24 +77,23 @@ class AddProduct extends Component
     public function save()
     {
 
-        // try {
- 
-            $this->validate([
-                "product" => "required|string|unique:products,product",
-                "description" =>  "required|string",
-                "product_slug" =>  "required|string|unique:products,product_slug",
-                "product_status" =>  "required|string",
-                "price"  => "required|numeric|min:0.01",
-                "quantity"  => "required|numeric|min:0",
-                "currency" => "sometimes|nullable",
-                "sku" => "required|numeric",
-                "image1" =>  "required|image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048",
-                "image2" => "sometimes|nullable|image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048",
-                "image3" => "sometimes|nullable|image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048",
-                "returnable" => "sometimes",
-                "category_id" => "required",
-                "brand_id" => "required",
-            ]);
+        $this->validate([
+            "product" => "required|string|unique:products,product",
+            "description" =>  "required|string",
+            "product_slug" =>  "required|string|unique:products,product_slug",
+            "product_status" =>  "required|string",
+            "price"  => "required|numeric|min:0.01",
+            "quantity"  => "required|numeric|min:0",
+            "currency" => "sometimes|nullable",
+            "sku" => "required|numeric",
+            "image1" =>  "required|image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048",
+            "image2" => "sometimes|nullable|image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048",
+            "image3" => "sometimes|nullable|image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048",
+            "returnable" => "sometimes",
+            "category_id" => "required",
+            "warehouse_id" => "required",
+            "brand_id" => "required",
+        ]);
 
             Product::create([
                 "pid"  => Str::uuid(),
@@ -106,17 +109,21 @@ class AddProduct extends Component
                 "image3" => $this->image3?->store("product_images", "public"),
                 "returnable" => $this->returnable,
                 "category_id" => $this->category_id,
+                "warehouse_id" => $this->warehouse_id,
                 "brand_id" => $this->brand_id,
                 "user_id" => Auth::user()->id
             ]);
 
+            // if($save)
+            // {
+            //     Inventory::create([
+                    
+            //     ]);
+            // }
+
             session()->flash('success', 'Product successfully created.');
         
             return $this->redirect(route('product.index'), navigate: true);
-
-        // } catch (\Throwable $th) {
-        //     Log::info($th);
-        // }
             
     }
 }

@@ -4,7 +4,7 @@
             <div class="section-header-back">
               <a href="{{ route('product.index') }}" wire:navigate  class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Create New {{ $title }}</h1>
+            <h1>Edit {{ $title }}</h1>
             <div class="section-header-breadcrumb">
               <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
               <div class="breadcrumb-item"><a href="{{ route('product.index') }}" wire:navigate >products</a></div>
@@ -50,7 +50,7 @@
                   </div>
 
                   <div class="row">
-                    <div class="form-group col-6">
+                    <div class="form-group col-4">
 
                         <label for="Categories">Categories</label>
                         <select class="form-control selectric" wire:model='category_id' name='category_id'>
@@ -64,7 +64,7 @@
                         @error('category') <span class='text-danger'> {{ $message }} </span> @enderror
                     </div>
 
-                    <div class="form-group col-6">
+                    <div class="form-group col-4">
                         <label for="Brands">Brands</label>
                         <select class="form-control selectric" wire:model='brand_id' name='brand_id'>
                           <option value='{{  $single_product?->brand->id }}'>{{  $single_product?->brand->brand }}</option>
@@ -75,6 +75,19 @@
                           @endforelse
                         </select>
                         @error('brand') <span class='text-danger'> {{ $message }} </span> @enderror
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label for="Warehouse">Warehouses</label>
+                        <select class="form-control selectric" wire:model='warehouse_id' name='warehouse_id'>
+                          <option value='{{  $single_product?->warehouse?->id }}'>{{  $single_product?->warehouse?->warehouse }}</option>
+                          @forelse ($warehouses as $warehouse)
+                            <option value='{{  $warehouse->id }}'>{{  $warehouse->warehouse }}</option>
+                          @empty
+                            <option value=''></option>
+                          @endforelse
+                        </select>
+                        @error('warehouse') <span class='text-danger'> {{ $message }} </span> @enderror
                     </div>
                   </div>
 

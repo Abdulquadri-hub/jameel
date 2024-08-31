@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Product;
 use Livewire\Component;
 use App\Models\Categories;
+use App\Models\Warehouse;
 use Illuminate\Support\Str;
 
 class Editproduct extends Component
@@ -26,8 +27,10 @@ class Editproduct extends Component
     public $image3;
     public $returnable;
     public $category_id;
+    public $warehouse_id;
     public $brand_id;
     public $categories;
+    public $warehouses;
     public $brands;
     public $image1Preview;
     public $image2Preview;
@@ -41,12 +44,12 @@ class Editproduct extends Component
         if(!empty($this->pid))
         {
             
-            $data['single_product'] = Product::with(['brand', 'category'])->where("pid", $this->pid)->first();
+            $data['single_product'] = Product::with(['brand', 'category', 'warehouse'])->where("pid", $this->pid)->first();
 
-            //get categories
             $data['categories'] = $this->categories = Categories::all();
 
-            //get brands 
+            $data['warehouses'] = $this->warehouses = Warehouse::all();
+
             $data['brands'] = $this->brands =  Brand::all();
 
             $this->product = $data['single_product']->product;

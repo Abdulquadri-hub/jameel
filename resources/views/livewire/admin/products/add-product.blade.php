@@ -40,7 +40,7 @@
                   </div>
 
                   <div class="row">
-                    <div class="form-group col-6">
+                    <div class="form-group col-4">
 
                         <label for="Categories">Categories</label>
                         <select class="form-control selectric" wire:model='category_id' name='category_id'>
@@ -51,10 +51,10 @@
                             <option value=''></option>
                           @endforelse
                         </select>
-                        @error('category') <span class='text-danger'> {{ $message }} </span> @enderror
+                        @error('category_id') <span class='text-danger'> {{ $message }} </span> @enderror
                     </div>
 
-                    <div class="form-group col-6">
+                    <div class="form-group col-4">
                         <label for="Brands">Brands</label>
                         <select class="form-control selectric" wire:model='brand_id' name='brand_id'>
                           <option></option>
@@ -64,8 +64,22 @@
                             <option value=''></option>
                           @endforelse
                         </select>
-                        @error('brand') <span class='text-danger'> {{ $message }} </span> @enderror
+                        @error('brand_id') <span class='text-danger'> {{ $message }} </span> @enderror
                     </div>
+
+                    <div class="form-group col-4">
+                        <label for="Warehouse">Warehouses</label>
+                        <select class="form-control selectric" wire:model='warehouse_id' name='warehouse_id'>
+                          <option></option>
+                          @forelse ($warehouses as $warehouse)
+                            <option value='{{  $warehouse->id }}'>{{  $warehouse->warehouse }}</option>
+                          @empty
+                            <option value=''></option>
+                          @endforelse
+                        </select>
+                        @error('warehouse_id') <span class='text-danger'> {{ $message }} </span> @enderror
+                    </div>
+
                   </div>
 
                   <div class="row">

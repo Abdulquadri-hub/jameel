@@ -29,6 +29,10 @@
             </li>
 
             <li class="dropdown">
+              <a href="{{ route('warehouse.index') }}" wire:navigate class="nav-link"><i class="far fa-user"></i> <span>Warehouses</span></a>
+            </li>
+
+            <li class="dropdown">
               <a href="#" wire:navigate class="nav-link"><i class="far fa-user"></i> <span>Roles And Permissions</span></a>
             </li>
 

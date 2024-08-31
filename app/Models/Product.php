@@ -27,7 +27,8 @@ class Product extends Model
         "returnable",
         "category_id",
         "brand_id",
-        "user_id"
+        "user_id",
+        "warehouse_id"
     ];
 
     
@@ -39,6 +40,11 @@ class Product extends Model
     public function brand()
     {
         return $this->belongsTo(Brand::class);
+    }
+
+    public function warehouse()
+    {
+        return $this->belongsTo(Warehouse::class);
     }
 
     public function category()
