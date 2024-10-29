@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\Products;
 
+use App\Helpers\Jameel;
 use App\Models\Brand;
 use App\Models\Product;
 use Livewire\Component;
@@ -38,6 +39,12 @@ class AddProduct extends Component
     public $image1Preview;
     public $image2Preview;
     public $image3Preview;
+    public $isLoading = false;
+
+    public function reload()
+    {
+        $this->isLoading = true;
+    }
 
     use WithFileUploads;
 
@@ -95,18 +102,38 @@ class AddProduct extends Component
             "brand_id" => "required",
         ]);
 
-            Product::create([
+        if($this->image1)
+        {
+            $fileName1 = time() . '.' . $this->image1->getClientOriginalExtension();
+            $this->image1->storeAs('product_images', $fileName1, 'public');
+            $image1fullpath =  asset('storage/public_images/' . $fileName1);
+        }else
+        if($this->image2)
+        {
+            $fileName2 = time() . '.' . $this->image2->getClientOriginalExtension();
+            $fileName2 = $this->image2->store('product_images', $fileName2, 'public');
+            $image2fullpath = asset('storage/public_images/' . $fileName2);
+
+        }else 
+        if($this->image3)
+        {
+            $fileName3 = time() . '.' . $this->image3->getClientOriginalExtension();
+            $this->image3->store('product_images', $fileName3, 'public');
+            $image3fullpath = asset('storage/public_images/' . $fileName3);
+        }
+
+        $save = Product::create([
                 "pid"  => Str::uuid(),
                 "product" => $this->product,
                 "description" => $this->description,
                 "product_slug" => $this->product_slug,
                 "product_status" => $this->product_status,
                 "price" => $this->price,
-                "quantity" => $this->quantity,
+                "qua-ntity" => $this->quantity,
                 "sku" => $this->sku,
-                "image1" => $this->image1?->store("product_images", "public"),
-                "image2" => $this->image2?->store("product_images", "public"),
-                "image3" => $this->image3?->store("product_images", "public"),
+                "image1" => $image1fullpath ?? null,
+                "image2" => $image2fullpath ?? null,
+                "image3" => $image3fullpath ?? null,
                 "returnable" => $this->returnable,
                 "category_id" => $this->category_id,
                 "warehouse_id" => $this->warehouse_id,
@@ -114,16 +141,16 @@ class AddProduct extends Component
                 "user_id" => Auth::user()->id
             ]);
 
-            // if($save)
-            // {
-            //     Inventory::create([
-                    
-            //     ]);
-            // }
+        // if($save)
+        // {
+        //     Inventory::create([
+                
+        //     ]);
+        // }
 
-            session()->flash('success', 'Product successfully created.');
+        session()->flash('success', 'Product successfully created.');
         
-            return $this->redirect(route('product.index'), navigate: true);
+        return $this->redirect(route('product.index'), navigate: true);
             
     }
 }

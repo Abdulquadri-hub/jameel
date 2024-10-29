@@ -7,7 +7,12 @@ use Livewire\Component;
 
 class AllWarehouses extends Component
 {
+    public $isLoading = false;
 
+    public function reload()
+    {
+        $this->isLoading = true;
+    }
     public function render()
     {
         $title = "Warehouse";

@@ -33,7 +33,7 @@
             </li>
 
             <li class="dropdown">
-              <a href="#" wire:navigate class="nav-link"><i class="far fa-user"></i> <span>Roles And Permissions</span></a>
+              <a href="{{ route('roles-and-permissions.index') }}" wire:navigate class="nav-link"><i class="far fa-user"></i> <span>Roles And Permissions</span></a>
             </li>
 
             <li class="menu-header">User</li>

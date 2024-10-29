@@ -11,7 +11,13 @@ class AddCategory extends Component
 {
     public $category;
     public $category_slug;
-    public $category_status; 
+    public $category_status;
+    public $isLoading = false;
+
+    public function reload()
+    {
+        $this->isLoading = true;
+    } 
 
     public function render()
     {

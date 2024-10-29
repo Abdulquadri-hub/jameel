@@ -13,6 +13,12 @@ class AddBrand extends Component
     public $description;
     public $brand_slug;
     public $brand_status;
+    public $isLoading = false;
+
+    public function reload()
+    {
+        $this->isLoading = true;
+    }
 
     public function render()
     {

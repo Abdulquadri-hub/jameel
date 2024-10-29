@@ -14,10 +14,16 @@ use App\Livewire\Admin\Products\AllProducts;
 use App\Livewire\Admin\Products\Editproduct;
 use App\Livewire\Admin\Categories\AddCategory;
 use App\Livewire\Admin\Categories\EditCategory;
-use App\Livewire\Admin\Categories\AllCategories;
 use App\Livewire\Admin\Warehouses\AddWarehouse;
+use App\Livewire\Admin\Categories\AllCategories;
 use App\Livewire\Admin\Warehouses\AllWarehouses;
 use App\Livewire\Admin\Warehouses\EditWarehouse;
+use App\Livewire\Admin\RolesAndPermissions\Roles\AddRole;
+use App\Livewire\Admin\RolesAndPermissions\Roles\EditRole;
+use App\Livewire\Admin\RolesAndPermissions\RolesAndPermissions;
+use App\Livewire\Admin\RolesAndPermissions\Permissions\AddPermission;
+use App\Livewire\Admin\RolesAndPermissions\Permissions\EditPermission;
+use App\Livewire\Admin\RolesAndPermissions\Roles\AssignPermission;
 
 Route::get('/', function () {
     return view('welcome');
@@ -70,6 +76,16 @@ Route::group(['prefix' =>  'dashboard'], function(){
         Route::get('/edit/{wid}', EditWarehouse::class)->name("warehouse.edit");
     });
     
+    Route::group(['prefix' =>  'roles-and-permissions'], function(){
+
+        Route::get('/', RolesAndPermissions::class)->name("roles-and-permissions.index");
+        Route::get('/add-role', AddRole::class)->name("roles-and-permissions.add-role");
+        Route::get('/edit-role/{rid}', EditRole::class)->name("roles-and-permissions.edit-role");
+        Route::get('/add-permission', AddPermission::class)->name("roles-and-permissions.add-permission");
+        Route::get('/edit-permission/{peid}', EditPermission::class)->name("roles-and-permissions.edit-permission");
+        Route::get('/assign-permissions/{roleId}', AssignPermission::class)
+            ->name("roles-and-permissions.assign-permissions");
+    }); 
 });
 
 

@@ -5,6 +5,23 @@
           <div class="section-header">
             <h1>Profile</h1>
             <div class="section-header-breadcrumb">
+              <div class='mr-3'>
+                <button wire:click="reload" 
+                        class="btn btn-primary position-relative" 
+                        wire:loading.class="disabled"
+                        wire:loading.attr="disabled">
+                    
+                    <span wire:loading.remove>
+                        <i class="fas fa-sync-alt"></i>
+                    </span>
+                    
+                    <span class="d-inline-flex align-items-center">
+                        <span wire:loading class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true">
+                          Loading...
+                        </span>
+                    </span>
+                </button>
+              </div>
               <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
               <div class="breadcrumb-item">Profile</div>
             </div>

@@ -11,6 +11,13 @@ class AllBrands extends Component
     use WithPagination;
 
     public $bid;
+    public $isLoading = false;
+
+    public function reload()
+    {
+        // return $this->redirect(route('brand.index'), navigate: true);
+        $this->isLoading = true;
+    }
 
     public function render()
     {

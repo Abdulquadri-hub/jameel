@@ -8,6 +8,23 @@
             </div>
 
             <div class="section-header-breadcrumb">
+              <div class='mr-3'>
+                <button wire:click="reload" 
+                        class="btn btn-primary position-relative" 
+                        wire:loading.class="disabled"
+                        wire:loading.attr="disabled">
+                    
+                    <span wire:loading.remove>
+                        <i class="fas fa-sync-alt"></i>
+                    </span>
+                    
+                    <span class="d-inline-flex align-items-center">
+                        <span wire:loading class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true">
+                          Loading...
+                        </span>
+                    </span>
+                </button>
+              </div>
               <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}" wire:navigate >Dashboard</a></div>
               <div class="breadcrumb-item"><a href="{{ route('categories.index') }}" wire:navigate >{{ $title }}</a></div>
               <div class="breadcrumb-item">All {{ $title }}</div>
@@ -112,7 +129,7 @@
                                   <div class="bullet"></div>
                                   <a href="{{ route('categories.edit', [$category->cid]) }}" wire:navigate >Edit</a>
                                   <div class="bullet"></div>
-                                  <a href="#"   wire:click.prevent='trash({{ $category->id }})' class="text-danger">Trash</a>
+                                  <a href="#"   wire:click.prevent='trash({{ $category->cid }})' class="text-danger">Trash</a>
                                 </div>
                               </td>
 

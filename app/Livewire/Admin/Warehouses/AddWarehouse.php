@@ -10,7 +10,13 @@ use Illuminate\Support\Facades\Auth;
 class AddWarehouse extends Component
 {
     public $warehouse;
-    public $warehouse_status; 
+    public $warehouse_status;
+    public $isLoading = false;
+
+    public function reload()
+    {
+        $this->isLoading = true;
+    }
 
     public function render()
     {

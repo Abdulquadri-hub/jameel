@@ -12,6 +12,12 @@ class Profile extends Component
     public $lastname;
     public $email;
     public $phone_no;
+    public $isLoading = false;
+
+    public function reload()
+    {
+        $this->isLoading = true;
+    }
 
     public function render()
     {

@@ -12,8 +12,8 @@
     <!-- CSS Libraries -->
     {{-- <link rel="stylesheet" href="{{ env('ASSETS_URL') }}/assets/modules/jqvmap/dist/jqvmap.min.css"> --}}
     <link rel="stylesheet" href="{{ env('ASSETS_URL') }}/assets/modules/summernote/summernote-bs4.css">
+    <link rel="stylesheet" href="{{ env('ASSETS_URL') }}/assets/modules/prism/prism.css">
     {{-- <link rel="stylesheet" href="{{ env('ASSETS_URL') }}/assets/modules/owlcarousel2/dist/assets/owl.carousel.min.css"> --}}
-    {{-- <link rel="stylesheet" href="{{ env('ASSETS_URL') }}/assets/modules/owlcarousel2/dist/assets/owl.theme.default.min.css">  --}}
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ env('ASSETS_URL') }}/assets/css/style.css">
@@ -73,25 +73,11 @@
     <script src="{{ env('ASSETS_URL') }}/assets/js/scripts.js"></script>
     <script src="{{ env('ASSETS_URL') }}/assets/js/custom.js"></script>
 
-    {{-- <script>
-        window.addEventListener("show-delete-confirmation", event => {
-            swal({
-    
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this imaginary file!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willDelete) => {
-              if (willDelete) {
-                Livewire.emit("deleteConfirmed");
-              } else {
-                swal("Your imaginary file is safe!");
-              }
-            });
-        });
-    </script> --}}
-    
+      <!-- JS Libraies -->
+    <script src="{{ env('ASSETS_URL') }}/assets/modules/prism/prism.js"></script>
+
+    <!-- Page Specific JS File -->
+    <script src="{{ env('ASSETS_URL') }}/assets/js/page/bootstrap-modal.js"></script>
+      
 </body>
 </html>

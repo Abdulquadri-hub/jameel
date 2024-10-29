@@ -11,6 +11,12 @@ class EditWarehouse extends Component
     public $wid;
     public $warehouse;
     public $warehouse_status;
+    public $isLoading = false;
+
+    public function reload()
+    {
+        $this->isLoading = true;
+    }
 
     public function render()
     {
